@@ -57,7 +57,7 @@ def generate_message(required_headers, headers, host=None, method=None, path=Non
         if h == '(request-target)':
             if not method or not path:
                 raise Exception('method and path arguments required when using "(request-target)"')
-            signable_list.append('%s: %s %s' % (h, method.lower(), path))
+            signable_list.append('%s: %s %s' % (h, method.lower(), path.lower()))
         
         elif h == 'host':
             # 'host' special case due to requests lib restrictions
