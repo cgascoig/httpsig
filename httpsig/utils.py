@@ -124,10 +124,13 @@ def build_signature_template(key_id, algorithm, headers):
     """
     param_map = {'keyId': key_id,
                  'algorithm': algorithm,
+                 'headers': None,
                  'signature': '%s'}
     if headers:
         headers = [h.lower() for h in headers]
         param_map['headers'] = ' '.join(headers)
+    else:
+        del param_map['headers']
     kv = map('{0[0]}="{0[1]}"'.format, param_map.items())
     kv_string = ','.join(kv)
     sig_string = 'Signature {0}'.format(kv_string)
